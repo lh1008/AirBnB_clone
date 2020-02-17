@@ -44,7 +44,7 @@ Update your command interpreter (`console.py`) to have these commands.
 _**8. First User**_  
 Write a class `User` that inherits from `BaseModel`.
 
-_** 9. More classes!**_  
+_**9. More classes!**_  
 Write all those classes that inherit from `BaseModel`.
 
 _**10. Console 1.0**_  
