@@ -13,12 +13,21 @@ class BaseModel():
     """= INIT & CLASS VARIABLES ============================================"""
     """====================================================================="""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ Initializes the class. """
+        if len(kwargs) == 0:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        else:
+            for key in kwargs:
+                if key == 'created_at' or key == 'updated_at':
+                    formt = "%Y-%m-%dT%H:%M:%S.%f"
+                    self.__dict__[key] = datetime.datetime.strptime(
+                        kwargs[key], formt)
+                elif key != '__class__':
+                    self.__dict__[key] = kwargs[key]
 
     """====================================================================="""
     """== METHODS =========================================================="""
