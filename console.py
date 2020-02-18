@@ -4,13 +4,18 @@
 
 import cmd
 import sys
-
+import json
+from models import storage
+from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """ Class for the commmand line interpreter """
     intro = None
     prompt = '(hbnb) '
     file = None
+    __models =[
+        "BaseModel"
+        ]
 
     """====================================================================="""
     """== METHODS =========================================================="""
@@ -27,6 +32,59 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ Method empty line with enter """
         pass
+
+    def do_create(self, arg):
+        """ Method to create new instance """
+        take = arg.split( )
+        if not arg:
+            print("** class name missing **")
+        elif take[0] not in self.__models:
+            print("** class doesn't exist **")
+        else:
+            var = eval(take[0])()
+            var.save()
+            print(var.id)
+
+    def do_show(self, arg):
+        """
+        Method that prints representation of an instance based
+        on the class name
+        """
+        take = arg.split( )
+        if not arg:
+            print("** class name missing **")
+        elif take[0] not in self.__models:
+            print("** class doesn't exist **")
+        elif len(take) < 2:
+            print("** instance id missing **")
+        else:
+            var = storage.all()
+            try:
+                obj = var[take[0]+"."+take[1]]
+                print(obj)
+            except:
+                print("** no instance found **")
+
+    def do_destroy(self, arg):
+        """
+        Method that deletes an instance based on the class
+        name and id
+        """
+        take = arg.split( )
+        if not arg:
+            print("** class name missing **")
+        elif take[0] not in self.__models:
+            print("** class doesn't exist **")
+        elif len(take) < 2:
+            print("** instance id missing **")
+        else:
+            var = storage.all()
+            try:
+                obj = take[0]+"."+take[1]
+                del var[obj]
+                storage.save()
+            except:
+                print("** no instance found **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
