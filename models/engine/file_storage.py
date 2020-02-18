@@ -3,6 +3,7 @@
     to instances.                                                           """
 
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -32,23 +33,28 @@ class FileStorage():
     def new(self, obj):
         """ Creates a new dictionary representation to save into a file. """
         key = obj.__class__.__name__ + "." + obj.id
-        self.__objects[key] = obj.to_dict()
-
+        self.__objects[key] = obj
 
     def save(self):
         """ Saves the data into the HDD via a file. """
-        with open(self.__file_path, 'a') as jfile:
-            json.dump(self.__objects, jfile)
+        dic = {}
+
+
+        for k, v in self.__objects.items():
+            dic[k] = v.to_dict()
+
+        with open(self.__file_path, 'w') as jfile:
+            json.dump(dic, jfile)
 
     def reload(self):
         """ Loads the data from the HDD into an instance. """
+        new_dic = {}
         try:
             with open(self.__file_path, 'r') as jfile:
-                json_load = json.loads(jfile.read())
-                for key, val in json_load.items():
-                    new_key = eval(val['__class__'])(**val)
-                    self.__objects = new_key
+                var = json.load(jfile)
 
+                for key, value in var.items():
+                    self.__objects[key] = eval(value['__class__'])(**value)
 
         except:
             pass
