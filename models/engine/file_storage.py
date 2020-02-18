@@ -4,6 +4,7 @@
 
 import json
 from models.base_model import BaseModel
+import models.user
 
 
 class FileStorage():
@@ -38,8 +39,6 @@ class FileStorage():
     def save(self):
         """ Saves the data into the HDD via a file. """
         dic = {}
-
-
         for k, v in self.__objects.items():
             dic[k] = v.to_dict()
 
