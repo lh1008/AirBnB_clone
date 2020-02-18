@@ -11,13 +11,10 @@ class User(BaseModel):
     """= INIT & CLASS VARIABLES ============================================"""
     """====================================================================="""
 
-    def __init__(self):
-        """ Initializes the class """
-        super().__init__()
-        self.email = ""
-        self.password = ""
-        self.first_name = ""
-        self.last_name = ""
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
 
     """====================================================================="""
     """== METHODS =========================================================="""
