@@ -5,7 +5,7 @@
 import cmd
 import sys
 import json
-from models import storage
+import models
 from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(take) < 2:
             print("** instance id missing **")
         else:
-            var = storage.all()
+            var = models.storage.all()
             try:
                 obj = var[take[0]+"."+take[1]]
                 print(obj)
@@ -78,13 +78,24 @@ class HBNBCommand(cmd.Cmd):
         elif len(take) < 2:
             print("** instance id missing **")
         else:
-            var = storage.all()
+            var = models.storage.all()
             try:
                 obj = take[0]+"."+take[1]
                 del var[obj]
-                storage.save()
+                models.storage.save()
             except:
                 print("** no instance found **")
+
+    def do_all(self, arg):
+        """ Method that prints all string rep of all instances """
+        if arg:
+            if arg not in self.__models:
+                print("** class doesn't exist **")
+            else:
+                for i in self.__models:
+                    print(self.__models)
+        else:
+            print(models.storage.all())
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
