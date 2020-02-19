@@ -3,7 +3,7 @@
     to instances.                                                           """
 
 import json
-
+from models.base_model import BaseModel
 
 class FileStorage():
     """ This class handels Json files with instances, it has 2 private class
@@ -12,11 +12,11 @@ class FileStorage():
     """====================================================================="""
     """= INIT & CLASS VARIABLES ============================================"""
     """====================================================================="""
+    __objects = {}
+    __file_path = "file.json"
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ Initializes the class. """
-        self.__file_path = "file.json"
-        self.__objects = {}
 
     """====================================================================="""
     """== METHODS =========================================================="""
@@ -47,12 +47,10 @@ class FileStorage():
                 json_load = json.loads(jfile.read())
                 for key, val in json_load.items():
                     new_key = eval(val['__class__'])(**val)
-                    self.__objects = new_key
-
-
+                    self.__objects[val['__class__']+'.'+new_key.id] = new_key
         except:
             pass
-
+        
     """-----------"""
     """- Private -"""
     """-----------"""

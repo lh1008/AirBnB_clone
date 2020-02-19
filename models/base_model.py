@@ -3,7 +3,7 @@
 
 import datetime
 import uuid
-from models import storage
+import models
 
 
 class BaseModel():
@@ -19,7 +19,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
         else:
             for key in kwargs:
@@ -48,7 +48,7 @@ class BaseModel():
         """ Updates the public instance attribute "update_at" with the current
             datetime.                                                       """
         updated = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """ Returns a dictionary containing all keys/values of __dict__ of the

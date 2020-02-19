@@ -88,14 +88,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """ Method that prints all string rep of all instances """
+        all_instances = models.storage.all()
         if arg:
             if arg not in self.__models:
                 print("** class doesn't exist **")
-            else:
-                for i in self.__models:
-                    print(self.__models)
         else:
-            print(models.storage.all())
+            print (all_instances)
+            for elem in all_instances.keys():
+                print(str(all_instances[elem]))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
