@@ -149,8 +149,6 @@ class HBNBCommand(cmd.Cmd):
             atr = args[2]
             obj.__dict__[atr] = args[3]
             obj.save()
-            print(obj)
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
