@@ -14,13 +14,14 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """ Class for the commmand line interpreter """
     intro = None
     prompt = '(hbnb) '
     file = None
-    __models =["Amenity", "BaseModel", "City", "Place", "Review", "State",
-               "User"]
+    __models = ["Amenity", "BaseModel", "City", "Place", "Review", "State",
+                "User"]
 
     """====================================================================="""
     """== METHODS =========================================================="""
@@ -40,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """ Method to create new instance """
-        take = arg.split( )
+        take = arg.split(' ')
         if not arg:
             print("** class name missing **")
         elif take[0] not in self.__models:
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         Method that prints representation of an instance based
         on the class name
         """
-        take = arg.split( )
+        take = arg.split(' ')
         if not arg:
             print("** class name missing **")
         elif take[0] not in self.__models:
@@ -75,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
         Method that deletes an instance based on the class
         name and id
         """
-        take = arg.split( )
+        take = arg.split(' ')
         if not arg:
             print("** class name missing **")
         elif take[0] not in self.__models:
@@ -110,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
         Method that updates an instance based on the class name
         and id
         """
-        args = args.split( )
+        args = args.split(' ')
         if len(args) < 4:
             if len(args) == 0:
                 print("** class name missing **")
@@ -122,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
         else:
             all_instances = models.storage.all()
-            id_list = [] # Stores matching classes id
+            id_list = []  # Stores matching classes id
             found_id = ""
 
             for var in all_instances.keys():
@@ -130,16 +131,16 @@ class HBNBCommand(cmd.Cmd):
                 if name_id[0] == args[0]:
                     id_list.append(name_id[1])
 
-            if len(id_list) == 0: #There was no match in class_name"
+            if len(id_list) == 0:  # There was no match in class_name"
                 print("** class doesn't exist **")
                 return
 
             for ids in id_list:
-                if ids == args[1]: # If the Id exist in a class
+                if ids == args[1]:  # If the Id exist in a class
                     found_id = ids
                     break
 
-            if found_id == "": # No match was found
+            if found_id == "":  # No match was found
                 print("** no instance found **")
                 return
 
