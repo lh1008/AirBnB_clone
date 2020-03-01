@@ -23,7 +23,7 @@
     opacity: 0.9;
 }
 
-.filters div{
+.filters>div{
     height: 100%;
     width: 25%;
     color: #484848;
@@ -32,6 +32,10 @@
 
 .locations {
     border-right: 1px solid #DDDDDD;
+}
+
+.amenities {
+    position: absolute;
 }
 
 .filters h3 {
@@ -53,9 +57,9 @@
     max-width: 100%;
     display: none;
     border: 1px solid #DDDDDD;
+    margin: auto;
+    paddin-bottom: 10%;
     border-radius: 4px;
-    margin: auto:
-    padding-bottom: 10%;
     padding-left: 10%;
 }
 
@@ -73,10 +77,7 @@ li {
     font-size: 16px;
 }
 
-.locations:hover .popover {
+.locations:hover .popover, .amenities:hover .popover {
     display: block;
-}
-
-.amenities:hover .popover {
-    display: block;
+    top: -19px;
 }
