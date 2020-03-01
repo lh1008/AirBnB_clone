@@ -57,11 +57,20 @@
     margin: auto:
     padding-bottom: 10%;
     padding-left: 10%;
+}
+
+li {
+    margin: 10px;
     list-style-type: none;
 }
 
-.amenities ul {
-    padding-top: 8%;
+.locations li {
+    margin: 5px -10px;
+    padding-bottom: 0px;
+}
+
+.locations h2 {
+    font-size: 16px;
 }
 
 .locations:hover .popover {
