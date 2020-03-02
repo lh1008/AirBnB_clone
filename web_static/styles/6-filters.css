@@ -4,6 +4,8 @@
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
+    display: flex;
+    flex-direction: row;
 }
 
 .filters button {
@@ -17,6 +19,7 @@
     margin: 11px 30px 0 0;
     opacity: 2;
     float: right;
+    margin-left: auto;
 }
 
 .filters button:hover {
@@ -35,7 +38,6 @@
 }
 
 .amenities {
-    position: absolute;
 }
 
 .filters h3 {

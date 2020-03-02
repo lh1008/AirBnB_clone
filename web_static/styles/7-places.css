@@ -1,5 +1,11 @@
+.places {
+    text-align: center;
+}
+
 .places>h1 {
     font-size: 30px;
+    text-align: left;
+    padding-left: 30px;
 }
 
 .places>div {
