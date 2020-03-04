@@ -37,9 +37,6 @@
     border-right: 1px solid #DDDDDD;
 }
 
-.amenities {
-}
-
 .filters h3 {
     font-weight: 600;
     padding-left: 50px;
@@ -73,6 +70,10 @@ li {
 .locations li {
     margin: 5px -10px;
     padding-bottom: 0px;
+}
+
+.amenities li{
+    margin-left: 10%;
 }
 
 .locations h2 {
