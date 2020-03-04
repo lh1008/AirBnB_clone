@@ -82,4 +82,5 @@ li {
 .locations:hover .popover, .amenities:hover .popover {
     display: block;
     top: -19px;
+    z-index: 1;
 }
